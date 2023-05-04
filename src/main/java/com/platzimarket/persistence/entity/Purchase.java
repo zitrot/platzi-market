@@ -1,10 +1,8 @@
 package com.platzimarket.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "COMPRAS")
@@ -27,6 +25,18 @@ public class Purchase {
 
     @Column(name = "estado")
     private String status;
+
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+    private Customer customer;
+
+    @OneToMany(mappedBy = "product")
+    private List<PurchaseProduct> purchaseProducts;
+
+    public Customer getCustomer() {
+        return customer;
+    }
 
     public Long getId() {
         return id;

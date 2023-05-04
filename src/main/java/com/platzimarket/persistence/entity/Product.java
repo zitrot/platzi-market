@@ -1,6 +1,13 @@
 package com.platzimarket.persistence.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCTOS")
@@ -16,6 +23,11 @@ public class Product {
 
     @Column(name = "id_categoria")
     private Integer idCategory;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    private Category category;
+
 
     @Column(name = "codigo_barras")
     private String BarCode;
